@@ -5,6 +5,11 @@ const countries = require('./countries.json');
  * @returns {Object}
  */
 function getCountryByIso3(isoCode){
+    for (let index = 0; index < countries.length; index++) {
+        if (countries[index].iso3 == isoCode){
+            return countries[index];
+        } ;
+    }
 }
 
 /**
@@ -14,13 +19,24 @@ function getCountryByIso3(isoCode){
  * @returns {string}
  */
 function getCountryTranslatedName(isoCode, language){
+    for (let index = 0; index < countries.length; index++) {
+        if (countries[index].iso3 == isoCode){
+            return countries[index].translations[language];
+        } ;
+    }
 }
 /**Get an array of all the countries with the specified subregion
  * @param  {string} subregion
  * @returns {Array}
  */
 function getCountriesBySubregion(subregion){
-    
+    let countries_subregion = [];
+    for (let index = 0; index < countries.length; index++) {
+        if (countries[index].subregion == subregion){
+            countries_subregion.push(countries[index].name);
+        } ;   
+    }
+    return countries_subregion
 }
 
 function main() {
@@ -35,7 +51,6 @@ function main() {
     console.log(
         '///// Ejercicio 3 /////\n',
         getCountriesBySubregion('South America'),
-        getCountriesBySubregion('Southern Asia'),
         '\n');
 
 }
